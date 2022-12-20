@@ -17,7 +17,7 @@ data class Formacao(val nome: String, val conteudos: List<ConteudoEducacional>, 
 
 fun main() {
 val nivel = Nivel.BASICO
-val message = when (nivel) {                      // 3
+val message = when (nivel) {                      
         Nivel.BASICO -> "It's nivel basico"
         Nivel.INTERMEDIARIO -> "It's nivel intermediario"
         Nivel.AVANCADO -> "It's nivel avançado"
