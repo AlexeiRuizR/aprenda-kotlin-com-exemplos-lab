@@ -1,28 +1,46 @@
 // [Template no Kotlin Playground](https://pl.kotl.in/WcteahpyN)
 
-enum class Nivel { BASICO, INTERMEDIARIO, AVANCADO }
+enum class Nivel { BASICO, INTERMEDIARIO, DIFICIL }
 
-class Usuario (val name: String)
+data class Usuario(val nomeu: String)
 
-data class ConteudoEducacional(val nome: String, val duracao: Int = 60)
+data class ConteudoEducacional(val nome: String, val duracao: Int)
 
-data class Formacao(val nome: String, val conteudos: List<ConteudoEducacional>, val nivel: String) {
+data class Formacao(val nome: String, val conteudos: List<ConteudoEducacional>){
 
-    val inscritos = mutableListOf<Usuario>()
-    
+    val inscritos: MutableList<Usuario> = mutableListOf()
+       
     fun matricular(usuario: Usuario) {
-        TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
+        inscritos.add(usuario)
     }
-}
+        
+  }
 
 fun main() {
-val nivel = Nivel.BASICO
-val message = when (nivel) {                      
-        Nivel.BASICO -> "It's nivel basico"
-        Nivel.INTERMEDIARIO -> "It's nivel intermediario"
-        Nivel.AVANCADO -> "It's nivel avançado"
-        }
-        println(message)
-    TODO("Analise as classes modeladas para este domínio de aplicação e pense em formas de evoluí-las.")
-    TODO("Simule alguns cenários de teste. Para isso, crie alguns objetos usando as classes em questão.")
+   // Estudiantes a matricular
+    val estudante1 = Usuario("Alexei Ruiz")
+    val estudante2 = Usuario("Maria Elice")
+    val estudante3 = Usuario("João Pereira")
+    val nivel = Nivel.INTERMEDIARIO
+    val conte = ConteudoEducacional("Java", 90)
+    val conte1 = ConteudoEducacional("Python", 120)
+    val conte2 = ConteudoEducacional("HTML e CSS3", 60)
+    val forma = Formacao("Full Stack", listOf(conte1, conte, conte2))
+    
+   
+    println("DIO possui Formaçoes incríveis, um delas é ${forma.nome}")
+    println("Esta formação está dividida em vários conteúdos com diferentes durações, que se apresentam abaixo:")
+    forma.conteudos.forEach{println(it)}
+    println("")
+    forma.matricular(estudante1)
+    forma.matricular(estudante2)
+    forma.matricular(estudante3)
+    val cant = forma.inscritos.count()
+    println("$cant alunos listados abaixo matriculados:")
+    forma.inscritos.forEach{ println(it)}
+    println("")    
+    println("O aluno ${forma.inscritos[0]} passará por treinamento em ${forma.nome}")
+    println("se especializando em ${forma.conteudos[1]}")
+    println("")
+    println("O nível estudado será $nivel")
 }
