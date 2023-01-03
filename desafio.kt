@@ -6,7 +6,7 @@ data class Usuario(val nomeu: String)
 
 data class ConteudoEducacional(val nome: String, val duracao: Int)
 
-data class Formacao(val nome: String, val conteudos: List<ConteudoEducacional>){
+data class Formacao(val nome: String, val conteudos: List<ConteudoEducacional>, val nivel: Nivel){
 
     val inscritos: MutableList<Usuario> = mutableListOf()
        
@@ -21,11 +21,11 @@ fun main() {
     val estudante1 = Usuario("Alexei Ruiz")
     val estudante2 = Usuario("Maria Elice")
     val estudante3 = Usuario("João Pereira")
-    val nivel = Nivel.INTERMEDIARIO
+    val nivelAct = Nivel.INTERMEDIARIO
     val conte = ConteudoEducacional("Java", 90)
     val conte1 = ConteudoEducacional("Python", 120)
     val conte2 = ConteudoEducacional("HTML e CSS3", 60)
-    val forma = Formacao("Full Stack", listOf(conte1, conte, conte2))
+    val forma = Formacao("Full Stack", listOf(conte1, conte, conte2), nivelAct)
     
    
     println("DIO possui Formaçoes incríveis, um delas é ${forma.nome}")
@@ -42,5 +42,5 @@ fun main() {
     println("O aluno ${forma.inscritos[0]} passará por treinamento em ${forma.nome}")
     println("se especializando em ${forma.conteudos[1]}")
     println("")
-    println("O nível estudado será $nivel")
+    println("O nível estudado será ${forma.nivel}")
 }
